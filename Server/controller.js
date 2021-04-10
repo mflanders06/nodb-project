@@ -13,10 +13,21 @@ const tickets = [
     }
 ]
 
+id = 2;
+notes=[];
+active = true;
+
 module.exports = {
     getTickets: (req, res) => {
-        console.log('this worked');
         res.status(200).send(tickets);
+    },
+
+    postTickets: (req, res) => {
+        const { customer, title } = req.body;
+        tickets.push({id, customer, title, notes, active});
+        res.status(200).send(tickets);
+        id++;
+        
     }
     
 }
