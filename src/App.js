@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
-import axois from 'axios';
+import axios from 'axios';
+
+import List from './components/List'
+
+
 
 class App extends Component{
     constructor(){
@@ -10,12 +14,23 @@ class App extends Component{
 
     }
 
-    //componentDidMount()
+    componentDidMount(){
+        axios 
+            .get('/api/tickets')
+            .then((response) =>{
+                //console.log(response.data);
+
+                this.setState({ tickets: response.data })
+            })
+            .catch();
+        
+    }
 
     render(){
+        //console.log('The state is:', this.state.tickets);
         return(
             <div>
-                hello world
+                <List tickets={this.state.tickets}/>
             </div>
         );
     }
