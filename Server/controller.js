@@ -15,8 +15,6 @@ const tickets = [
 
 id = 2;
 
-active = true;
-
 module.exports = {
     getTickets: (req, res) => {
         res.status(200).send(tickets);
@@ -24,7 +22,7 @@ module.exports = {
 
     postTickets: (req, res) => {
         const { customer, title } = req.body;
-        tickets.push({id, customer, title, notes:[], active});
+        tickets.push({id, customer, title, notes:[], active: true});
         res.status(200).send(tickets);
         id++;
         
@@ -35,11 +33,21 @@ module.exports = {
         const {id} = req.query;
 
         const index = tickets.findIndex( value => value.id === parseInt(id));
-        console.log(index);
         tickets[index].notes.push(notes);
        
         res.status(200).send(tickets);
 
+    },
+
+    editTicket: (req, res) => {
+        const {customer, title} = req.body;
+        const {id} = req.params;
+
+        const index = tickets.findIndex( value => value.id === parseInt(id));
+        tickets[index].customer = customer;
+        tickets[index].title = title;
+
+        res.status(200).send(tickets);
     }
     
 }
