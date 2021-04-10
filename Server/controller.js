@@ -14,7 +14,7 @@ const tickets = [
 ]
 
 id = 2;
-notes=[];
+
 active = true;
 
 module.exports = {
@@ -24,10 +24,22 @@ module.exports = {
 
     postTickets: (req, res) => {
         const { customer, title } = req.body;
-        tickets.push({id, customer, title, notes, active});
+        tickets.push({id, customer, title, notes:[], active});
         res.status(200).send(tickets);
         id++;
         
+    },
+
+    addNotes: (req, res) => {
+        const {notes} = req.body;
+        const {id} = req.query;
+
+        const index = tickets.findIndex( value => value.id === parseInt(id));
+        console.log(index);
+        tickets[index].notes.push(notes);
+       
+        res.status(200).send(tickets);
+
     }
     
 }
