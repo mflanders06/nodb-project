@@ -48,6 +48,15 @@ module.exports = {
         tickets[index].title = title;
 
         res.status(200).send(tickets);
-    }
+    },
     
+    deleteTicket: (req, res) => {
+        const {id} = req.params;
+
+        const index = tickets.findIndex( value => value.id === parseInt(id));
+        tickets.splice(index, 1);
+
+        res.status(200).send(tickets);
+
+    }
 }

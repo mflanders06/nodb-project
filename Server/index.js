@@ -7,12 +7,14 @@ const {
     getTickets,
     postTickets,
     addNotes,
-    editTicket
+    editTicket,
+    deleteTicket
 } = require('./controller');
 
 app.get('/api/tickets', getTickets);
 app.post('/api/tickets', postTickets);
 app.put('/api/tickets', addNotes);
 app.put('/api/tickets/:id', editTicket);
+app.delete('/api/tickets/:id', deleteTicket);
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
