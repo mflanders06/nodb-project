@@ -13,9 +13,12 @@ class App extends Component{
     constructor(){
         super();
         this.state = {
-            tickets:[]
+            tickets:[],
+            note:""
         };
-
+        this.insertTicket = this.insertTicket.bind(this);
+        this.insertNote = this.insertNote.bind(this);
+        this.handleNoteChange = this.handleNoteChange.bind(this);
     }
 
     componentDidMount(){
@@ -36,12 +39,34 @@ class App extends Component{
         .catch();
     }
 
+    insertTicket(customer, title){
+        axios
+            .post(`/api/tickets`,{customer: customer, title: title})
+            .then((response) => {
+                this.setState({ tickets: response.data })
+            } )
+    }
+
+    insertNote(id){
+        const {note} = this.state
+        //console.log('this is the id', id, 'this is the note', note)
+        axios
+            .post(`/api/tickets/notes?id=${id}`, {note: note})
+            .then((response) => {
+                this.setState({ tickets: response.data, note: "" })
+            })
+    }
+
+    handleNoteChange(e){
+        this.setState({note: e.target.value})
+    }
+
     render(){
         //console.log('The state is:', this.state.tickets);
         return(
             <div>
-                <AddTicket />
-                <List tickets={this.state.tickets}/>
+                <AddTicket insertTicket={this.insertTicket}/>
+                <List tickets={this.state.tickets} handleNoteChange={this.handleNoteChange} insertNote={this.insertNote}/>
             </div>
         );
     }

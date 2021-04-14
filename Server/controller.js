@@ -29,11 +29,11 @@ module.exports = {
     },
 
     addNotes: (req, res) => {
-        const {notes} = req.body;
+        const {note} = req.body;
         const {id} = req.query;
-
+        console.log(id, note)
         const index = tickets.findIndex( value => value.id === parseInt(id));
-        tickets[index].notes.push(notes);
+        tickets[index].notes.push(note);
        
         res.status(200).send(tickets);
 

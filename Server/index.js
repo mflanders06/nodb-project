@@ -13,7 +13,7 @@ const {
 
 app.get('/api/tickets', getTickets);
 app.post('/api/tickets', postTickets);
-app.put('/api/tickets', addNotes);
+app.post('/api/tickets/notes', addNotes);
 app.put('/api/tickets/:id', editTicket);
 app.delete('/api/tickets/:id', deleteTicket);
 
