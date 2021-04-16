@@ -7,6 +7,7 @@ import './main.css';
 import List from './components/List'
 import AddTicket from './components/AddTicket'
 import Ticket from './components/Ticket'
+import Header from './components/Header'
 
 
 
@@ -62,6 +63,7 @@ class App extends Component{
         //console.log('The state is:', this.state.tickets);
         return(
             <div>
+                <Header />
                 <AddTicket insertTicket={this.insertTicket}/>
                 <List tickets={this.state.tickets} handleNoteChange={this.handleNoteChange} />
                 <Ticket tickets={this.state.tickets} insertNote={this.insertNote}/>
