@@ -45,6 +45,7 @@ class App extends Component{
             .then((response) => {
                 this.setState({ tickets: response.data })
             } )
+            .catch();
     }
 
     insertNote(id, note){
@@ -54,6 +55,7 @@ class App extends Component{
             .then((response) => {
                 this.setState({ tickets: response.data })
             })
+            .catch();
     }
 
     render(){
