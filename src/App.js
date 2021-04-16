@@ -6,6 +6,7 @@ import './main.css';
 
 import List from './components/List'
 import AddTicket from './components/AddTicket'
+import Ticket from './components/Ticket'
 
 
 
@@ -13,12 +14,11 @@ class App extends Component{
     constructor(){
         super();
         this.state = {
-            tickets:[],
-            note:""
+            tickets:[]
         };
         this.insertTicket = this.insertTicket.bind(this);
         this.insertNote = this.insertNote.bind(this);
-        this.handleNoteChange = this.handleNoteChange.bind(this);
+
     }
 
     componentDidMount(){
@@ -47,18 +47,13 @@ class App extends Component{
             } )
     }
 
-    insertNote(id){
-        const {note} = this.state
-        //console.log('this is the id', id, 'this is the note', note)
+    insertNote(id, note){
+        console.log('this is the id', id, 'this is the note', note)
         axios
             .post(`/api/tickets/notes?id=${id}`, {note: note})
             .then((response) => {
-                this.setState({ tickets: response.data, note: "" })
+                this.setState({ tickets: response.data })
             })
-    }
-
-    handleNoteChange(e){
-        this.setState({note: e.target.value})
     }
 
     render(){
@@ -66,7 +61,8 @@ class App extends Component{
         return(
             <div>
                 <AddTicket insertTicket={this.insertTicket}/>
-                <List tickets={this.state.tickets} handleNoteChange={this.handleNoteChange} insertNote={this.insertNote}/>
+                <List tickets={this.state.tickets} handleNoteChange={this.handleNoteChange} />
+                <Ticket tickets={this.state.tickets} insertNote={this.insertNote}/>
             </div>
         );
     }

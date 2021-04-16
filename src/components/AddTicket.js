@@ -1,4 +1,4 @@
-import axios from 'axios';
+//import axios from 'axios';
 import React, {Component} from 'react';
 
 class AddTicket extends Component{
@@ -13,7 +13,7 @@ class AddTicket extends Component{
 
     handleChange = (e) => {
         this.setState({ [e.target.name]: e.target.value })
-        console.log('this is customer', this.state.custInput, 'this is title', this.state.titleInput);
+        //console.log('this is customer', this.state.custInput, 'this is title', this.state.titleInput);
     }
 
     handleClick = () => {
