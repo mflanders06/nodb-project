@@ -36,7 +36,7 @@ const mappedTickets = tickets.map((value) => {
             <div className="listID">{value.id}</div>
             <div className="listCustomer">{value.customer}</div>
             <div className="listTitle">{value.title}</div>
-            <ul>
+            <ul className="notes">
                 {innerNotes}
                 <input placeholder="Add note here" onChange={this.handleNoteChange} ></input>
                 <button onClick={() => this.props.insertNote(value.id, this.state.note)}>Add Note</button>

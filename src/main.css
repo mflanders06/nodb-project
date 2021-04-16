@@ -1,5 +1,33 @@
 .ticket{
     display: flex;
     flex-direction: row;
-    color:blueviolet;
+    margin-left: 30px;
+    
+}
+
+.listID, .listCustomer, .listTitle, .notes, .active{
+    padding: 6px;
+    border: 1.5px solid black;
+}
+
+.listID{
+    width: 30px;
+    
+}
+
+.listCustomer{
+    width: 100px;
+    
+}
+
+.listTitle{
+    width: 150px;
+}
+
+.notes {
+    width: 250px;
+}
+
+.active{
+    width: 60px;
 }

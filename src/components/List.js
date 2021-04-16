@@ -2,7 +2,7 @@
 function List(){
 
     return(
-        <div className="list">
+        <div className="ticket">
             <div className="listID">ID</div>
             <div className="listCustomer">CUSTOMER</div>
             <div className="listTitle">TITLE</div>

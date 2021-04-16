@@ -25,8 +25,8 @@ class AddTicket extends Component{
     render(){
         return(
             <div>
-                <input name="custInput" className="ticketInput" onChange={this.handleChange} ></input>
-                <input name="titleInput" className="ticketInput" onChange={this.handleChange}></input>
+                <input name="custInput" className="ticketInput" placeholder="Customer" onChange={this.handleChange} ></input>
+                <input name="titleInput" className="ticketInput" placeholder="Title" onChange={this.handleChange}></input>
                 <button className="ticketSubmit" onClick={this.handleClick}>Submit</button>
 
             </div>
