@@ -31,7 +31,7 @@ module.exports = {
     addNotes: (req, res) => {
         const {note} = req.body;
         const {id} = req.query;
-        console.log(id, note)
+        //console.log(id, note)
         const index = tickets.findIndex( value => value.id === parseInt(id));
         tickets[index].notes.push(note);
        

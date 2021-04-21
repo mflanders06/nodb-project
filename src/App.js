@@ -19,7 +19,8 @@ class App extends Component{
         };
         this.insertTicket = this.insertTicket.bind(this);
         this.insertNote = this.insertNote.bind(this);
-
+        this.editTicket = this.editTicket.bind(this);
+        this.delTicket = this.delTicket.bind(this);
     }
 
     componentDidMount(){
@@ -56,7 +57,7 @@ class App extends Component{
     }
 
     insertNote(id, note){
-        console.log('this is the id', id, 'this is the note', note)
+        //console.log('this is the id', id, 'this is the note', note)
         axios
             .post(`/api/tickets/notes?id=${id}`, {note: note})
             .then((response) => {
@@ -74,7 +75,18 @@ class App extends Component{
                 this.setState({ tickets: response.data })
             })
             .catch(err => {
-                console.log(err);
+                console.log(err, err.response);
+            });
+    }
+
+    delTicket(id){
+        axios
+            .delete(`/api/tickets/${id}`)
+            .then((response) => {
+                this.setState({ tickets: response.data })
+            })
+            .catch(err => {
+                console.log(err, err.response);
             });
     }
 
@@ -85,7 +97,7 @@ class App extends Component{
                 <Header />
                 <AddTicket insertTicket={this.insertTicket}/>
                 <List tickets={this.state.tickets} handleNoteChange={this.handleNoteChange} />
-                <Ticket tickets={this.state.tickets} insertNote={this.insertNote} editTicket={this.editTicket}/>
+                <Ticket tickets={this.state.tickets} insertNote={this.insertNote} editTicket={this.editTicket} delTicket={this.delTicket}/>
             </div>
         );
     }

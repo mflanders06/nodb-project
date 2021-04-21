@@ -26,7 +26,7 @@ handleCustomerChange(e){
 
 handleTitleChange(e){
     this.setState({ titleInput: e.target.value })
-    console.log(this.state.titleInput);
+    //console.log(this.state.titleInput);
 }
 
 ticketEdit(id){             //this is the edit ticket button, not the axios call to edit
@@ -36,9 +36,19 @@ ticketEdit(id){             //this is the edit ticket button, not the axios call
 saveClick = () => {
     const {editID, custInput, titleInput} = this.state;
     this.props.editTicket(editID, custInput, titleInput);
-    this.setState({ custInput: "", titleInput: "" })
+    this.setState({ custInput: "", titleInput: "", editID: 0 })
 }
 
+delClick = () => {
+    const {editID} = this.state;
+    this.props.delTicket(editID);
+    this.setState({ editID: 0 });
+}
+
+addNoteButton = (id) => {
+    this.props.insertNote(id, this.state.note);
+    this.setState({ note: "" });
+}
 
 render(){
 
@@ -61,11 +71,11 @@ const mappedTickets = tickets.map((value) => {
                 <ul className="notes">
                     {innerNotes}
                     <input placeholder="Add note here" onChange={this.handleNoteChange} ></input>
-                    <button onClick={() => this.props.insertNote(value.id, this.state.note)}>Add Note</button>
+                    <button onClick={() => this.addNoteButton(value.id)}>Add Note</button>
                 </ul>
                 <div className="active">{value.active}</div>
                 <button onClick={() => this.ticketEdit(value.id)} >Edit</button>
-                <button>Delete</button>
+                <button onClick={() => this.delClick(value.id)}>Delete</button>
             </div>
         )
     }
