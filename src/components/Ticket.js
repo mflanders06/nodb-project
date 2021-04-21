@@ -11,10 +11,9 @@ class Ticket extends Component{
         }
 
         this.handleNoteChange = this.handleNoteChange.bind(this);
+        this.handleTitleChange = this.handleTitleChange.bind(this);
+        this.handleCustomerChange = this.handleCustomerChange.bind(this);
     }
-
-
-
 
 handleNoteChange(e){
     this.setState({note: e.target.value})
@@ -27,11 +26,19 @@ handleCustomerChange(e){
 
 handleTitleChange(e){
     this.setState({ titleInput: e.target.value })
+    console.log(this.state.titleInput);
 }
 
-ticketEdit(id){
+ticketEdit(id){             //this is the edit ticket button, not the axios call to edit
     this.setState({ editID: id })
 }
+
+saveClick = () => {
+    const {editID, custInput, titleInput} = this.state;
+    this.props.editTicket(editID, custInput, titleInput);
+    this.setState({ custInput: "", titleInput: "" })
+}
+
 
 render(){
 
@@ -57,7 +64,7 @@ const mappedTickets = tickets.map((value) => {
                     <button onClick={() => this.props.insertNote(value.id, this.state.note)}>Add Note</button>
                 </ul>
                 <div className="active">{value.active}</div>
-                <button>Edit</button>
+                <button onClick={() => this.ticketEdit(value.id)} >Edit</button>
                 <button>Delete</button>
             </div>
         )
@@ -66,15 +73,15 @@ const mappedTickets = tickets.map((value) => {
         return(
             <div key={value.id} className="ticket">
                 <div className="listID">{value.id}</div>
-                <div className="listCustomer">{value.customer} <input placeholder="Customer"></input> </div>
-                <div className="listTitle">{value.title} <input placeholder="Title"></input> </div>
+                <div className="listCustomer">{value.customer} <input placeholder="Customer" onChange={this.handleCustomerChange}></input> </div>
+                <div className="listTitle">{value.title} <input placeholder="Title" onChange={this.handleTitleChange}></input> </div>
                 <ul className="notes">
                     {innerNotes}
                     <input placeholder="Add note here" onChange={this.handleNoteChange} ></input>
                     <button onClick={() => this.props.insertNote(value.id, this.state.note)}>Add Note</button>
                 </ul>
                 <div className="active">{value.active}</div>
-                <button>Save</button>
+                <button onClick={this.saveClick} >Save</button>
                 <button>Cancel</button>
                 <button>Delete</button>
             </div>

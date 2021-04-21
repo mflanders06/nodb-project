@@ -28,7 +28,9 @@ class App extends Component{
             .then((response) =>{
                 this.setState({ tickets: response.data })
             })
-            .catch();        
+            .catch(err => {
+                console.log(err, err.response);
+            });        
     }
 
     refreshList(){
@@ -37,7 +39,9 @@ class App extends Component{
         .then((response) =>{
             this.setState({ tickets: response.data })
         })
-        .catch();
+        .catch(err => {
+            console.log(err, err.response);
+        });
     }
 
     insertTicket(customer, title){
@@ -46,7 +50,9 @@ class App extends Component{
             .then((response) => {
                 this.setState({ tickets: response.data })
             } )
-            .catch();
+            .catch(err => {
+                console.log(err, err.response);
+            });
     }
 
     insertNote(id, note){
@@ -56,7 +62,20 @@ class App extends Component{
             .then((response) => {
                 this.setState({ tickets: response.data })
             })
-            .catch();
+            .catch(err => {
+                console.log(err, err.response);
+            });
+    }
+
+    editTicket(id, customer, title){
+        axios
+            .put(`/api/tickets/${id}`, {customer: customer, title: title})
+            .then((response) => {
+                this.setState({ tickets: response.data })
+            })
+            .catch(err => {
+                console.log(err);
+            });
     }
 
     render(){
@@ -66,7 +85,7 @@ class App extends Component{
                 <Header />
                 <AddTicket insertTicket={this.insertTicket}/>
                 <List tickets={this.state.tickets} handleNoteChange={this.handleNoteChange} />
-                <Ticket tickets={this.state.tickets} insertNote={this.insertNote}/>
+                <Ticket tickets={this.state.tickets} insertNote={this.insertNote} editTicket={this.editTicket}/>
             </div>
         );
     }
