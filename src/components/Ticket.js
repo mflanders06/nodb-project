@@ -73,7 +73,7 @@ const mappedTickets = tickets.map((value) => {
                     <input placeholder="Add note here" onChange={this.handleNoteChange} ></input>
                     <button onClick={() => this.addNoteButton(value.id)}>Add Note</button>
                 </ul>
-                <div className="active">{value.active}</div>
+
                 <button onClick={() => this.ticketEdit(value.id)} >Edit</button>
                 <button onClick={() => this.delClick(value.id)}>Delete</button>
             </div>
@@ -93,7 +93,7 @@ const mappedTickets = tickets.map((value) => {
                 <div className="active">{value.active}</div>
                 <button onClick={this.saveClick} >Save</button>
                 <button>Cancel</button>
-                <button>Delete</button>
+                <button onClick={() => this.delClick(value.id)}>Delete</button>
             </div>
         )
     }

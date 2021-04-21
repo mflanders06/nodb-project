@@ -1,7 +1,7 @@
 const tickets = [
     {
         "id":1,
-        "customer": "Bubba",
+        "customer": "Bob",
         "title": "I lost my computer",
         "notes": [
             "Does not have any computer info",

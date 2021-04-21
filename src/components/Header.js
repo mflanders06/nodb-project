@@ -1,7 +1,7 @@
 function Header(){
     return(
         <header>
-            Mike's ticketing system
+            <h1>Mike's ticketing system</h1>
         </header>
     );
 }

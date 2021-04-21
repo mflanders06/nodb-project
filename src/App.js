@@ -4,7 +4,7 @@ import axios from 'axios';
 import './index.css';
 import './main.css';
 
-import List from './components/List'
+import ListHeader from './components/ListHeader'
 import AddTicket from './components/AddTicket'
 import Ticket from './components/Ticket'
 import Header from './components/Header'
@@ -80,6 +80,7 @@ class App extends Component{
     }
 
     delTicket(id){
+        console.log('this is the id: ', id);
         axios
             .delete(`/api/tickets/${id}`)
             .then((response) => {
@@ -96,7 +97,7 @@ class App extends Component{
             <div>
                 <Header />
                 <AddTicket insertTicket={this.insertTicket}/>
-                <List tickets={this.state.tickets} handleNoteChange={this.handleNoteChange} />
+                <ListHeader tickets={this.state.tickets} handleNoteChange={this.handleNoteChange} />
                 <Ticket tickets={this.state.tickets} insertNote={this.insertNote} editTicket={this.editTicket} delTicket={this.delTicket}/>
             </div>
         );

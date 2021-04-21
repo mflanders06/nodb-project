@@ -16,7 +16,7 @@
 }
 
 .listCustomer{
-    width: 100px;
+    width: 150px;
     
 }
 
@@ -30,4 +30,31 @@
 
 .active{
     width: 60px;
+}
+
+header{
+    margin-left: 30px;
+    font-size: 40px;
+    padding: 10px;
+}
+
+.addTicket{
+    margin-left: 75px;
+    padding-bottom: 5px;
+}
+
+button{
+    height: 20px;
+}
+
+h1{
+    color:#0e0f0f;
+}
+
+h1:hover{
+    color:rgb(126, 134, 148);
+}
+
+h3:hover{
+    color:rgba(0, 0, 0, 60%)
 }

@@ -1,5 +1,5 @@
 
-function List(){
+function ListHeader(){
 
     return(
         <div className="ticket">
@@ -7,10 +7,10 @@ function List(){
             <div className="listCustomer">CUSTOMER</div>
             <div className="listTitle">TITLE</div>
             <div className="notes">NOTES</div>
-            <div className="active">ACTIVE</div>
+
             
         </div>
     )
 }
 
-export default List;
+export default ListHeader;
